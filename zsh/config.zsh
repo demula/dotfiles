@@ -42,12 +42,13 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
+zmodload zsh/complist
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 # emacs mode
 # I always enter vi mode by mistake
-bindkey -e
+#bindkey -e
 
 # fuzzy find: start to type
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
@@ -82,3 +83,16 @@ if test -d /usr/local/opt/fzf/shell; then
 else
 	bindkey '^R' history-incremental-search-backward
 fi
+
+# Use lf to switch directories and bind it to ctrl-o if available
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd^M'
+
