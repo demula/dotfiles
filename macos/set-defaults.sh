@@ -169,8 +169,8 @@ defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 
 echo ""
 echo "› Dock"
-echo "  › Setting the icon size of Dock items to 36 pixels for optimal size/screen-realestate"
-defaults write com.apple.dock tilesize -int 36
+echo "  › Setting the icon size of Dock items to 45 pixels for optimal size/screen-realestate"
+defaults write com.apple.dock tilesize -int 45
 
 echo "  › Speeding up Mission Control animations and grouping windows by application"
 defaults write com.apple.dock expose-animation-duration -float 0.1
@@ -295,10 +295,6 @@ fi
 
 echo "  › Disable Spotify web helper"
 disable_agent ~/Applications/Spotify.app/Contents/MacOS/SpotifyWebHelper
-
-echo "  › Prevent Android-File-Transfer to open when a device connects"
-disable_agent "/Applications/Android File Transfer.app/Contents/Resources/Android File Transfer Agent.app"
-disable_agent "$HOME/Library/Application Support/Google/Android File Transfer/Android File Transfer Agent.app"
 
 #############################
 

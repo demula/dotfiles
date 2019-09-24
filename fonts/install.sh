@@ -3,12 +3,13 @@ URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.z
 
 install() {
 	curl -L -s -o /tmp/fura.zip "$URL"
-	unzip /tmp/fura.zip -d /tmp
-	cp /tmp/FiraCode/*.ttf "$2"
+	unzip /tmp/fura.zip -d /tmp/FiraCode
+	cp /tmp/FiraCode/*.ttf "$1"
 }
 
 if [ "$(uname -s)" = "Darwin" ]; then
-	if which brew >/dev/null 2>&1; then
+	if command -v brew >/dev/null 2>&1; then
+		brew tap homebrew/cask-fonts
 		brew cask install font-firacode-nerd-font
 		brew cask install font-firacode-nerd-font-mono
 	else

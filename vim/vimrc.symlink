@@ -5,7 +5,13 @@ Plug 'fatih/vim-go', {'tag': '*', 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', {'rtp': 'vim'}
 
 " auto-complete for golang et al
-Plug 'Shougo/deoplete.nvim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " provides insert mode auto-completion for quotes, parens, brackets, etc.
@@ -46,7 +52,7 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'moll/vim-bbye'
 
 " Colors
-Plug 'ayu-theme/ayu-vim'
+Plug 'nikitavoloboev/vim-monokai-night'
 
 call plug#end()
 
@@ -223,12 +229,11 @@ endif
 if exists('+termguicolors')
   set termguicolors
 endif
-let ayucolor="mirage"
-colorscheme ayu
+:silent! colorscheme monokai-night
 "set background=dark
 " let g:hybrid_use_Xresources = 1
 " let g:rehash256 = 1
-set guifont=Menlo:h15
+set guifont=Fura\ Code\ Retina\ Mono:h15
 set guioptions-=L
 
 " This comes first, because we have mappings that depend on leader
@@ -459,6 +464,7 @@ nnoremap <leader>gp :Gpush<CR>
 vnoremap <leader>gb :Gblame<CR>
 
 " ==================== Vim-go ====================
+let g:go_version_warning = 0
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
@@ -569,7 +575,7 @@ autocmd BufWritePre * StripWhitespace
 
 " =================== vim-airline ========================
 
-let g:airline_theme='ayu'
+let g:airline_theme='base16_monokai'
 
 " set to use powerline fonts when not in a ssh session
 let g:remoteSession = ($STY == "")
