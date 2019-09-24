@@ -7,6 +7,7 @@ fi
 alias l="ls -lAh"
 alias la="ls -A"
 alias ll="ls -l"
+alias ..="cd .."
 
 alias grep="grep --color=auto"
 alias duf="du -sh * | sort -hr"
