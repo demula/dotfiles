@@ -1,0 +1,4 @@
+#!/bin/sh
+
+test -e "$HOME/.local/share/iterm2/zsh_shell_integration.zsh" || return 0
+source "$HOME/.local/share/iterm2/zsh_shell_integration.zsh"
